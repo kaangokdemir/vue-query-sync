@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![npm package](https://img.shields.io/npm/v/vue-query-sync.svg)](https://www.npmjs.org/package/vue-query-sync) [![downloads](https://img.shields.io/npm/dt/vue-query-sync.svg)](https://www.npmjs.com/package/vue-query-sync) [![size](https://img.shields.io/bundlephobia/minzip/vue-query-sync)](https://www.npmjs.com/package/vue-query-sync)
 
-A Vue2.x directive to update your query strings after each input and sync your input elements with your search bar to having refresh-proof forms.
+A Vue2.x directive to update your query strings after each input and sync your form elements with your search bar to having refresh-proof forms.
 
 <img src="https://raw.githubusercontent.com/kaangokdemir/vue-query-sync/master/example/example.gif"/>
 
@@ -21,6 +21,7 @@ npm i vue-query-sync
 
 ```js
 import VueQuerySync from 'vue-query-sync'
+
 Vue.use(VueQuerySync)
 
 // or
@@ -29,11 +30,11 @@ Vue.directive('query', VueQuerySync)
 ```
 
 ```html
-// Automatically adds ?state=myValue query after typing.
+<!-- Automatically adds ?state=myValue query after typing. -->
 <input v-query="country" />
 
-// Automatically adds ?city=myValue query after typing.
-<input v-query="price" />
+<!-- Automatically adds ?city=myValue query after typing and two way binds the input value with query string. -->
+<input v-query:sync="city" />
 ```
 
 ### For More, please check the [Example](./example/App.vue)
