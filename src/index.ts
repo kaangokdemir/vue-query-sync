@@ -15,14 +15,29 @@ const vueQuerySyncs = Vue.directive('query', {
     const isSync = binding.arg === 'sync'
 
     if (isSync && isRouteHasQueryEqualsToBindingValue) {
+      const vmodelDirective = vnode.data?.directives?.find(
+        (directive) => directive.name === 'model'
+      )
+
       if ((el as HTMLInputElement).type === 'checkbox') {
         const isChecked = context.$route.query[binding.value] === 'true'
         ;(el as HTMLInputElement).checked = isChecked
-        console.log(binding)
+
+        // Updates v-model bind data
+        if (vmodelDirective) {
+          ;(vnode.context as any)[vmodelDirective.expression] =
+            context.$route.query[binding.value] === 'true'
+        }
       } else {
         ;(el as HTMLInputElement).value = context.$route.query[
           binding.value
         ] as string
+
+        // Updates v-model bind data
+        if (vmodelDirective) {
+          ;(vnode.context as any)[vmodelDirective.expression] =
+            context.$route.query[binding.value]
+        }
       }
     }
 
